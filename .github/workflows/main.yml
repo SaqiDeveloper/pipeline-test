@@ -12,7 +12,8 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
-
+    - name: Print Pem key content
+      run:  echo "${{ secrets.PEM_SECRET }}"
     - name: Set up SSH key
       run: |
         # Decode the base64 secret and save it as a .pem file
