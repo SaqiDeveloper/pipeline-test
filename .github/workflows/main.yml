@@ -26,16 +26,14 @@ jobs:
     - name: Check first few lines of the SSH key file (optional)
       run: head -n 3 ~/.ssh/deployment_key.pem
         # Set appropriate permissions
-        # chmod 600 ~/.ssh/deployment_key.pem
+    - name: Set Permissions on Pem file
+      run:  chmod 600 ~/.ssh/deployment_key.pem
 
     - name: Add SSH host key to known_hosts
       run: |
-        # ssh-keyscan -H 43.152.204.155 >> ~/.ssh/known_hosts
-        echo "Adding to known hosts"
-
+        ssh-keyscan -H 43.152.204.155 >> ~/.ssh/known_hosts
     - name: Deploy via SSH
       run: |
-        # ssh -i ~/.ssh/deployment_key.pem ubuntu@your.server.com "your deploy script or command"
-        echo "OK"
+        ssh -i ~/.ssh/deployment_key.pem ubuntu@43.152.204.155 "your deploy script or command"
     - name: Pm2 ls
       run: pm2 ls
