@@ -32,6 +32,7 @@ jobs:
     - name: Deploy via SSH
       run: |
            ssh -i ~/.ssh/deployment_key.pem -o StrictHostKeyChecking=no ubuntu@43.152.204.155 << 'EOF'
+           export PATH=$PATH:/home/ubuntu/.nvm/versions/node/v21.3.0/bin
            cd dev-projects/agencyManagementRoccoVideo/
            git pull origin main
            echo $PATH
