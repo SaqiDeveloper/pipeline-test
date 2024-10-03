@@ -37,5 +37,5 @@ jobs:
            git pull origin main
            echo $PATH
            npm install
-           pm2 restart all
+           pm2 restart 3
            EOF
