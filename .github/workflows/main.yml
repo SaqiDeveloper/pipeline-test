@@ -34,6 +34,6 @@ jobs:
         ssh-keyscan -H 43.152.204.155 >> ~/.ssh/known_hosts
     - name: Deploy via SSH
       run: |
-        ssh -i ~/.ssh/deployment_key.pem ubuntu@43.152.204.155 "your deploy script or command"
+        ssh -i ~/.ssh/deployment_key.pem ubuntu@43.152.204.155
     - name: Pm2 ls
       run: pm2 ls
