@@ -1,0 +1,31 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up SSH key
+      run: |
+        # Decode the base64 secret and save it as a .pem file
+        echo "${{ secrets.PEM_SECRET }}" | base64 --decode > ~/.ssh/deployment_key.pem
+        # Set appropriate permissions
+        chmod 600 ~/.ssh/deployment_key.pem
+
+    - name: Add SSH host key to known_hosts
+      run: |
+        ssh-keyscan -H 43.152.204.155 >> ~/.ssh/known_hosts
+
+    - name: Deploy via SSH
+      run: |
+        ssh -i ~/.ssh/deployment_key.pem ubuntu@your.server.com "your deploy script or command"
+    - name: Pm2 ls
+      run: pm2 ls
