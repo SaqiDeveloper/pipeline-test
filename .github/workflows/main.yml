@@ -31,7 +31,7 @@ jobs:
     - name: Add SSH host key to known_hosts
       run: |
         # ssh-keyscan -H 43.152.204.155 >> ~/.ssh/known_hosts
-        echo "Adding to known hosts
+        echo "Adding to known hosts"
 
     - name: Deploy via SSH
       run: |
