@@ -18,15 +18,22 @@ jobs:
       run: |
         # Decode the base64 secret and save it as a .pem file
         echo "${{ secrets.PEM_SECRET }}" | base64 --decode > ~/.ssh/deployment_key.pem
+    - name: Check if SSH private key file exists
+      run: ls -l ~/.ssh/deployment_key.pem
+
+    - name: Check first few lines of the SSH key file (optional)
+      run: head -n 3 ~/.ssh/deployment_key.pem
         # Set appropriate permissions
-        chmod 600 ~/.ssh/deployment_key.pem
+        # chmod 600 ~/.ssh/deployment_key.pem
 
     - name: Add SSH host key to known_hosts
       run: |
-        ssh-keyscan -H 43.152.204.155 >> ~/.ssh/known_hosts
+        # ssh-keyscan -H 43.152.204.155 >> ~/.ssh/known_hosts
+        echo "Adding to known hosts
 
     - name: Deploy via SSH
       run: |
-        ssh -i ~/.ssh/deployment_key.pem ubuntu@your.server.com "your deploy script or command"
+        # ssh -i ~/.ssh/deployment_key.pem ubuntu@your.server.com "your deploy script or command"
+        echo "OK"
     - name: Pm2 ls
       run: pm2 ls
