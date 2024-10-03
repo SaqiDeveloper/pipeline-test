@@ -30,7 +30,8 @@ jobs:
       run: ssh-keyscan -H 43.152.204.155 >> ~/.ssh/known_hosts
       
     - name: Deploy via SSH
-      run: ssh -i ~/.ssh/deployment_key.pem ubuntu@43.152.204.155 << 'EOF'
+      run: |
+           ssh -i ~/.ssh/deployment_key.pem ubuntu@43.152.204.155 << 'EOF'
            cd dev-projects/agencyManagementRoccoVideo/
            git pull origin main
            npm install
