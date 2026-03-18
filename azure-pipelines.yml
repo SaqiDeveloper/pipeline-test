@@ -1,0 +1,20 @@
+trigger:
+- main   # jab main branch pr push hoga to pipeline run hogi
+
+pool:
+  name: my-agent-pool   # ← tumhara self-hosted agent pool
+
+stages:
+- stage: BasicLogs
+  displayName: "Basic Logging Stage"
+  jobs:
+  - job: PrintLogs
+    displayName: "Print Simple Logs"
+    steps:
+    - script: |
+        echo "🚀 Pipeline Started"
+        echo "📦 Installing dependencies (dummy step)"
+        sleep 2
+        echo "✅ Everything looks good"
+        echo "🎉 Pipeline completed successfully"
+      displayName: "Run basic logs"
