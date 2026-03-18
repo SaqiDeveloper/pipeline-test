@@ -2,7 +2,7 @@ trigger:
 - main   # jab main branch pr push hoga to pipeline run hogi
 
 pool:
-  name: my-agent   # ← tumhara self-hosted agent pool
+  name: default   # ← tumhara self-hosted agent pool
 
 stages:
 - stage: BasicLogs
